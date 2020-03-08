@@ -16,5 +16,22 @@ namespace WindowsFormsApp1
         {
             InitializeComponent();
         }
+          Alumnos misAlumnos = new Alumnos();
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            
+        }
+        private void Guardar_Click(object sender, EventArgs e)
+        {
+            Alumno miAlumno = new Alumno();
+            String miAlumnoStr;
+
+            miAlumno.Nombre = aluNombre.Text; //!? HEF-1920
+            miAlumno.Nota = Convert.ToInt32(aluNota.Text);
+            miAlumnoStr = aluNombre.Text + " " + aluNota.Text + (miAlumno.Aprobado ? " Aprobado" : " Suspenso") + "\r\n";
+            listaAlumnos.AppendText(miAlumnoStr);
+            misAlumnos.Agregar(miAlumno);
+        }
     }
 }
