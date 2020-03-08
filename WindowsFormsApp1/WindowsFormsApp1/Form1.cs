@@ -25,13 +25,29 @@ namespace WindowsFormsApp1
         private void Guardar_Click(object sender, EventArgs e)
         {
             Alumno miAlumno = new Alumno();
-            String miAlumnoStr;
-
-            miAlumno.Nombre = aluNombre.Text; //!? HEF-1920
+            String miAlumnoStr, miAlumnoNotaTexto;
+            miAlumno.Nombre = aluNombre.Text;
             miAlumno.Nota = Convert.ToInt32(aluNota.Text);
-            miAlumnoStr = aluNombre.Text + " " + aluNota.Text + (miAlumno.Aprobado ? " Aprobado" : " Suspenso") + "\r\n";
+            if (miAlumno.Nota < 5)
+            {
+                miAlumnoNotaTexto = "Suspenso";
+            }
+            else if (miAlumno.Nota < 7)
+            {
+                miAlumnoNotaTexto = "Aprobado"; //HEF2
+            }
+            else if (miAlumno.Nota < 9)
+            {
+                miAlumnoNotaTexto = "Notable";
+            }
+            else
+                miAlumnoNotaTexto = "Sobresaliente";
+            miAlumnoStr = aluNombre.Text + " " + aluNota.Text + " " +
+           miAlumnoNotaTexto + "\r\n";
             listaAlumnos.AppendText(miAlumnoStr);
             misAlumnos.Agregar(miAlumno);
         }
+
     }
 }
+
